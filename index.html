@@ -68,6 +68,31 @@
         /* Map Styling */
         .premium-map { filter: grayscale(0.8) contrast(1.2) opacity(0.9); transition: filter 0.5s; }
         .glass-panel:hover .premium-map { filter: grayscale(0) contrast(1) opacity(1); }
+
+        /* Price Card Styling */
+        .price-card {
+            border: 2px solid var(--primary-red);
+            background: linear-gradient(135deg, rgba(225, 29, 72, 0.1) 0%, rgba(20, 20, 20, 0.8) 100%);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        .price-card:hover {
+            border-color: #ff1744;
+            box-shadow: 0 0 30px rgba(225, 29, 72, 0.4);
+            transform: translateY(-4px);
+        }
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary-red);
+            margin: 0.5rem 0;
+        }
+        .price-fee {
+            font-size: 1rem;
+            color: #9ca3af;
+            margin-top: 0.5rem;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-red-600 selection:text-white">
@@ -96,10 +121,34 @@
                 <div class="h-[1px] w-12 bg-gradient-to-l from-transparent to-red-600"></div>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                <div class="glass-panel p-6 text-center group"><p class="text-gray-400 text-sm font-semibold mb-2">المبلغ المطلوب</p><div class="text-4xl font-black text-white mb-4">500</div><p class="text-gray-500">ريال</p></div>
-                <div class="glass-panel p-6 text-center group"><p class="text-gray-400 text-sm font-semibold mb-2">المبلغ المطلوب</p><div class="text-4xl font-black text-white mb-4">1000</div><p class="text-gray-500">ريال</p></div>
-                <div class="glass-panel p-6 text-center group"><p class="text-gray-400 text-sm font-semibold mb-2">المبلغ المطلوب</p><div class="text-4xl font-black text-white mb-4">2000</div><p class="text-gray-500">ريال</p></div>
+            <div class="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-6">
+                <div class="price-card">
+                    <p class="text-gray-400 text-sm font-semibold">المبلغ المطلوب</p>
+                    <div class="price-amount">500 ﷼</div>
+                    <p class="price-fee">الفائدة 150 ﷼</p>
+                </div>
+                <div class="price-card">
+                    <p class="text-gray-400 text-sm font-semibold">المبلغ المطلوب</p>
+                    <div class="price-amount">1000 ﷼</div>
+                    <p class="price-fee">الفائدة 300 ﷼</p>
+                </div>
+                <div class="price-card">
+                    <p class="text-gray-400 text-sm font-semibold">المبلغ المطلوب</p>
+                    <div class="price-amount">1500 ﷼</div>
+                    <p class="price-fee">الفائدة 450 ﷼</p>
+                </div>
+                <div class="price-card">
+                    <p class="text-gray-400 text-sm font-semibold">المبلغ المطلوب</p>
+                    <div class="price-amount">2000 ﷼</div>
+                    <p class="price-fee">الفائدة 600 ﷼</p>
+                </div>
+            </div>
+
+            <!-- Info Box -->
+            <div class="mt-8 glass-panel p-6 border-red-600/50">
+                <p class="text-center text-gray-200 font-semibold text-lg">
+                    بدون شروط و الدفعة الدولة عليها والتخليص عن بعد ومرحبا بالجميع
+                </p>
             </div>
         </section>
 
@@ -212,7 +261,7 @@
 
                     <div dir="rtl" class="glass-panel p-6 w-[340px] flex-shrink-0 flex flex-col">
                         <div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold text-white shadow-inner">R</div><div><h4 class="font-bold text-white text-sm">رامز</h4><p class="text-yellow-400 text-xs">⭐⭐⭐⭐⭐</p></div></div>
-                        <p class="text-gray-300 text-sm leading-relaxed flex-grow">��اب اشكر مكتب الرائد على حسن التعامل والاحترام والتقدير وعلى سرعة الانجاز</p>
+                        <p class="text-gray-300 text-sm leading-relaxed flex-grow">حاب اشكر مكتب الرائد على حسن التعامل والاحترام والتقدير وعلى سرعة الانجاز</p>
                     </div>
 
                     <div dir="rtl" class="glass-panel p-6 w-[340px] flex-shrink-0 flex flex-col">
