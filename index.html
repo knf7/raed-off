@@ -11,7 +11,8 @@
             theme: {
                 extend: {
                     colors: {
-                        'r-red': '#e11d48',
+                        /* تم تغيير r-red ليكون أحمر داكن (red-800) ليعطي ثقة وفخامة */
+                        'r-red': '#991b1b', 
                         'r-sky': '#0ea5e9',
                         'r-green': '#25D366',
                         'tabby': '#3EFFB6',
@@ -102,7 +103,7 @@
                     <span class="font-black text-2xl tracking-tight text-white">الرائد</span>
                 </div>
                 <div class="hidden md:flex space-x-8 space-x-reverse">
-                    <a href="#alraed" class="text-gray-300 hover:text-white font-semibold transition-colors">سلفة المحل</a>
+                    <a href="#alraed" class="text-gray-300 hover:text-white font-semibold transition-colors">مهلة الراتب</a>
                     <a href="#emkan" class="text-gray-300 hover:text-white font-semibold transition-colors">سلفة إمكان</a>
                     <a href="#reviews" class="text-gray-300 hover:text-white font-semibold transition-colors">التقييمات</a>
                     <a href="#location" class="text-gray-300 hover:text-white font-semibold transition-colors">موقعنا</a>
@@ -117,17 +118,17 @@
     <!-- القسم الرئيسي -->
     <header class="relative pt-40 pb-10 px-4 text-center z-10 flex flex-col items-center justify-center min-h-[70vh]">
         <h1 class="text-6xl md:text-8xl font-black mb-6 text-white tracking-tighter drop-shadow-2xl leading-tight">
-            مكتب <span class="text-transparent bg-clip-text bg-gradient-to-r from-r-red to-pink-500 transition-colors duration-1000" id="hero-title-accent">الرائد</span>
+            مكتب <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-800 to-red-600 transition-colors duration-1000" id="hero-title-accent">الرائد</span>
         </h1>
         <p class="text-2xl md:text-3xl font-bold text-gray-300 max-w-2xl mx-auto leading-relaxed mb-10">
             تجاوز أزمتك المالية بيسر وسهولة وبطريقة شرعية
         </p>
         
         <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center mb-16">
-            <a href="#alraed" class="backdrop-blur-lg bg-r-red/20 border border-r-red/50 hover:bg-r-red/40 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-[0_0_25px_rgba(225,29,72,0.3)] hover:shadow-[0_0_30px_rgba(225,29,72,0.5)] flex items-center justify-center gap-2">
+            <a href="#alraed" class="bg-black/40 backdrop-blur-lg border border-r-red/40 hover:bg-r-red/20 hover:border-r-red/80 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(225,29,72,0.2)] hover:shadow-[0_0_30px_rgba(225,29,72,0.5)] flex items-center justify-center gap-2">
                 سلفة المحل
             </a>
-            <a href="#emkan" class="backdrop-blur-lg bg-r-sky/20 border border-r-sky/50 hover:bg-r-sky/40 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-[0_0_25px_rgba(14,165,233,0.3)] hover:shadow-[0_0_30px_rgba(14,165,233,0.5)] flex items-center justify-center gap-2">
+            <a href="#emkan" class="bg-black/40 backdrop-blur-lg border border-r-sky/40 hover:bg-r-sky/20 hover:border-r-sky/80 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-[0_0_20px_rgba(14,165,233,0.2)] hover:shadow-[0_0_30px_rgba(14,165,233,0.5)] flex items-center justify-center gap-2">
                 سلفة إمكان
             </a>
         </div>
@@ -137,7 +138,7 @@
             <div class="glass-panel shine-effect p-1 rounded-2xl bg-gradient-to-r from-white/5 to-white/10 relative overflow-hidden border border-white/10 hover:border-white/20 transition-all cursor-default">
                 <div class="absolute -top-10 -right-10 w-32 h-32 bg-yellow-500 rounded-full blur-3xl opacity-10"></div>
                 
-                <div class="bg-black/40 backdrop-blur-xl rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-5 relative z-10 border border-white/5">
+                <div class="bg-black/60 backdrop-blur-md rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-5 relative z-10">
                     <div class="flex items-center gap-3">
                         <div class="bg-yellow-500/10 text-yellow-500 border border-yellow-500/30 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-2 shadow-[0_0_10px_rgba(234,179,8,0.2)]">
                             <span class="relative flex h-2 w-2">
@@ -150,10 +151,10 @@
                     </div>
                     
                     <div class="flex items-center gap-3" dir="ltr">
-                        <div class="backdrop-blur-md bg-tamara/10 border border-tamara/50 text-tamara px-4 py-1.5 rounded-lg font-black text-xl tracking-tighter shadow-[0_0_20px_rgba(250,171,155,0.2)] hover:bg-tamara/20 hover:scale-105 transition-all">
+                        <div class="bg-tamara/10 backdrop-blur-lg border border-tamara/40 text-tamara px-4 py-1.5 rounded-lg font-black text-xl tracking-tighter shadow-[0_0_15px_rgba(250,171,155,0.15)] hover:scale-105 transition-all hover:bg-tamara/20 hover:shadow-[0_0_25px_rgba(250,171,155,0.4)]">
                             tamara
                         </div>
-                        <div class="backdrop-blur-md bg-tabby/10 border border-tabby/50 text-tabby px-4 py-1.5 rounded-lg font-black text-xl tracking-tighter shadow-[0_0_20px_rgba(62,255,182,0.2)] hover:bg-tabby/20 hover:scale-105 transition-all">
+                        <div class="bg-tabby/10 backdrop-blur-lg border border-tabby/40 text-tabby px-4 py-1.5 rounded-lg font-black text-xl tracking-tighter shadow-[0_0_15px_rgba(62,255,182,0.15)] hover:scale-105 transition-all hover:bg-tabby/20 hover:shadow-[0_0_25px_rgba(62,255,182,0.4)]">
                             tabby
                         </div>
                     </div>
@@ -169,7 +170,7 @@
             <div class="flex flex-col items-center justify-center gap-3 mb-16">
                 <div class="flex items-center justify-center gap-5">
                     <div class="h-[2px] w-12 md:w-24 bg-gradient-to-r from-transparent to-r-red opacity-50"></div>
-                    <h2 class="text-3xl md:text-5xl font-black text-white text-center">سلفة المحل</h2>
+                    <h2 class="text-3xl md:text-5xl font-black text-white text-center">مهلة إلى الراتب</h2>
                     <div class="h-[2px] w-12 md:w-24 bg-gradient-to-l from-transparent to-r-red opacity-50"></div>
                 </div>
                 <p class="text-gray-400 font-semibold text-lg bg-black/30 px-6 py-2 rounded-full border border-white/5">حضور شخصي للمكتب بالدمام لإتمام الإجراءات</p>
@@ -482,7 +483,7 @@
                         orbBottom.style.background = '#001a2e';
                         
                         // تغيير لون الكلمة الرئيسية
-                        heroTitleAccent.classList.remove('from-r-red', 'to-pink-500');
+                        heroTitleAccent.classList.remove('from-red-800', 'to-red-600');
                         heroTitleAccent.classList.add('from-r-sky', 'to-blue-500');
                     } else {
                         // إظهار السمة الحمراء (الرائد)
@@ -495,7 +496,7 @@
                         orbBottom.style.background = '#2a0000';
                         
                         // استرجاع لون الكلمة الرئيسية
-                        heroTitleAccent.classList.add('from-r-red', 'to-pink-500');
+                        heroTitleAccent.classList.add('from-red-800', 'to-red-600');
                         heroTitleAccent.classList.remove('from-r-sky', 'to-blue-500');
                     }
                 });
