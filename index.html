@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="مكتب الرائد للخدمات المالية - حلول تمويلية سريعة وشرعية في الدمام وعن بعد.">
+    <meta name="description" content="مكتب الرائد - حلول تمويلية سريعة وشرعية في الدمام وعن بعد.">
     <title>مكتب الرائد | التميز المالي</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -13,19 +13,20 @@
                     colors: {
                         'r-red': '#e11d48',
                         'r-sky': '#0ea5e9',
+                        'r-green': '#25D366',
+                        'tabby': '#3EFFB6',
+                        'tamara': '#FAAB9B'
                     }
                 }
             }
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-red: #e11d48;
-            --primary-sky: #0ea5e9;
-            /* خلفية زجاجية داكنة جداً تمنع الانعكاس */
-            --glass-bg: rgba(10, 10, 10, 0.7); 
-            --glass-border: rgba(255, 255, 255, 0.05);
+            --glass-bg: rgba(10, 10, 10, 0.6); 
+            --glass-border: rgba(255, 255, 255, 0.08);
         }
 
         body { 
@@ -33,261 +34,402 @@
             color: #ffffff; 
             overflow-x: hidden;
             scroll-behavior: smooth;
-            /* تدرج لوني سلس لكامل الصفحة يربط بين الأحمر الخاص بالمكتب والسماوي الخاص بإمكان */
-            background: linear-gradient(180deg, #240005 0%, #1a0000 30%, #001829 60%, #00121f 100%);
+            /* الخلفية الديناميكية تعتمد على عناصر div الآن */
         }
 
-        /* الكرات المحيطية أصبحت سوداء لعدم إحداث انعكاس على شاشة الجوال */
-        .ambient-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
-        .pulse-orb { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.8; animation: float 15s infinite alternate ease-in-out; }
-        .orb-1 { width: 500px; height: 500px; background: #000000; top: -150px; right: -100px; }
-        .orb-2 { width: 400px; height: 400px; background: #050505; bottom: 15%; left: -50px; animation-delay: -5s; }
+        /* تأثير الكرات المحيطية */
+        .ambient-bg { position: fixed; inset: 0; z-index: -5; overflow: hidden; pointer-events: none; }
+        .pulse-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.6; animation: float 15s infinite alternate ease-in-out; }
+        .orb-1 { width: 500px; height: 500px; top: -100px; right: -100px; }
+        .orb-2 { width: 400px; height: 400px; bottom: 10%; left: -50px; animation-delay: -5s; }
         
-        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(40px, 60px) scale(1.05); } }
+        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(30px, 50px) scale(1.1); } }
 
-        /* اللوحات الزجاجية (الكروت) */
+        /* اللوحات الزجاجية */
         .glass-panel {
             background: var(--glass-bg);
-            backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 1.5rem;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); /* ظل أسود بدل الملون */
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.7);
         }
         
-        /* تأثير الرفع عند التأشير بدون توهج ساطع */
-        .glass-panel:hover { border-color: rgba(255, 255, 255, 0.15); transform: translateY(-4px); }
+        .glass-panel:hover { border-color: rgba(255, 255, 255, 0.2); transform: translateY(-5px); }
 
-        /* شريط التقييمات المتحرك */
-        .marquee-container { display: flex; overflow: hidden; position: relative; width: 100%; padding: 1rem 0; }
-        .marquee-content { display: flex; gap: 1.5rem; width: max-content; animation: scroll-marquee 50s linear infinite; }
+        .highlight-card { border: 1px solid #e11d48; box-shadow: 0 0 25px rgba(225, 29, 72, 0.15); transform: scale(1.02); z-index: 10; }
+        .highlight-card.sky { border: 1px solid #0ea5e9; box-shadow: 0 0 25px rgba(14, 165, 233, 0.15); }
+
+        .marquee-container { display: flex; overflow: hidden; position: relative; width: 100%; padding: 1.5rem 0; }
+        .marquee-content { display: flex; gap: 1.5rem; width: max-content; animation: scroll-marquee 40s linear infinite; }
         .marquee-container:hover .marquee-content { animation-play-state: paused; }
         @keyframes scroll-marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* خريطة جوجل بفلتر داكن */
-        .premium-map { filter: grayscale(1) contrast(1.1) opacity(0.6); transition: filter 0.5s; }
-        .glass-panel:hover .premium-map { filter: grayscale(0.7) contrast(1.1) opacity(0.9); }
+        .premium-map { filter: grayscale(0.8) contrast(1.2) opacity(0.8); transition: filter 0.5s; }
+        .glass-panel:hover .premium-map { filter: grayscale(0.4) contrast(1.1) opacity(1); }
+
+        @keyframes pulse-whatsapp { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+        .whatsapp-fab { animation: pulse-whatsapp 2s infinite; }
+        
+        /* تأثير لمعان (Shine) لبطاقة تابي وتمارا */
+        .shine-effect { position: relative; overflow: hidden; }
+        .shine-effect::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg); animation: shine 6s infinite;
+        }
+        @keyframes shine { 0% { left: -100%; } 20% { left: 200%; } 100% { left: 200%; } }
     </style>
 </head>
-<body class="antialiased selection:bg-r-red selection:text-white">
+<body class="antialiased selection:bg-r-red selection:text-white bg-black">
 
-    <!-- الخلفية المدمجة والتوهجات السوداء -->
-    <div class="ambient-bg"><div class="pulse-orb orb-1"></div><div class="pulse-orb orb-2"></div></div>
+    <!-- الخلفيات الديناميكية للتبديل اللوني المذهل -->
+    <div id="bg-alraed" class="fixed inset-0 z-[-10] transition-opacity duration-1000 ease-in-out opacity-100" style="background: linear-gradient(180deg, #1f0004 0%, #120000 30%, #000 100%);"></div>
+    <div id="bg-emkan" class="fixed inset-0 z-[-10] transition-opacity duration-1000 ease-in-out opacity-0" style="background: linear-gradient(180deg, #00121f 0%, #000c14 30%, #000 100%);"></div>
 
-    <header class="relative pt-24 pb-16 px-4 text-center z-10">
-        <h1 class="text-6xl md:text-8xl font-black mb-5 text-white tracking-tighter drop-shadow-xl">
-            مكتب <span class="text-r-red">الرائد</span>
+    <!-- الكرات المحيطية الملونة -->
+    <div class="ambient-bg">
+        <div id="orb-top" class="pulse-orb orb-1 transition-colors duration-1000" style="background: #3a000a;"></div>
+        <div id="orb-bottom" class="pulse-orb orb-2 transition-colors duration-1000" style="background: #2a0000;"></div>
+    </div>
+
+    <!-- شريط التنقل العلوي -->
+    <nav class="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="font-black text-2xl tracking-tight text-white">الرائد</span>
+                </div>
+                <div class="hidden md:flex space-x-8 space-x-reverse">
+                    <a href="#alraed" class="text-gray-300 hover:text-white font-semibold transition-colors">سلفة المحل</a>
+                    <a href="#emkan" class="text-gray-300 hover:text-white font-semibold transition-colors">سلفة إمكان</a>
+                    <a href="#reviews" class="text-gray-300 hover:text-white font-semibold transition-colors">التقييمات</a>
+                    <a href="#location" class="text-gray-300 hover:text-white font-semibold transition-colors">موقعنا</a>
+                </div>
+                <a href="https://wa.me/966508665558" target="_blank" class="hidden md:flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white px-5 py-2 rounded-full font-bold transition-all">
+                    تواصل معنا
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- القسم الرئيسي -->
+    <header class="relative pt-40 pb-10 px-4 text-center z-10 flex flex-col items-center justify-center min-h-[70vh]">
+        <h1 class="text-6xl md:text-8xl font-black mb-6 text-white tracking-tighter drop-shadow-2xl leading-tight">
+            مكتب <span class="text-transparent bg-clip-text bg-gradient-to-r from-r-red to-pink-500 transition-colors duration-1000" id="hero-title-accent">الرائد</span>
         </h1>
-        <p class="text-2xl md:text-3xl font-bold text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        <p class="text-2xl md:text-3xl font-bold text-gray-300 max-w-2xl mx-auto leading-relaxed mb-10">
             تجاوز أزمتك المالية بيسر وسهولة وبطريقة شرعية
         </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center mb-16">
+            <a href="#alraed" class="backdrop-blur-lg bg-r-red/20 border border-r-red/50 hover:bg-r-red/40 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-[0_0_25px_rgba(225,29,72,0.3)] hover:shadow-[0_0_30px_rgba(225,29,72,0.5)] flex items-center justify-center gap-2">
+                سلفة المحل
+            </a>
+            <a href="#emkan" class="backdrop-blur-lg bg-r-sky/20 border border-r-sky/50 hover:bg-r-sky/40 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-[0_0_25px_rgba(14,165,233,0.3)] hover:shadow-[0_0_30px_rgba(14,165,233,0.5)] flex items-center justify-center gap-2">
+                سلفة إمكان
+            </a>
+        </div>
+
+        <!-- قسم تابي وتمارا (قريباً) بتصميم رهيب -->
+        <div class="w-full max-w-2xl mx-auto z-20 px-2">
+            <div class="glass-panel shine-effect p-1 rounded-2xl bg-gradient-to-r from-white/5 to-white/10 relative overflow-hidden border border-white/10 hover:border-white/20 transition-all cursor-default">
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-yellow-500 rounded-full blur-3xl opacity-10"></div>
+                
+                <div class="bg-black/40 backdrop-blur-xl rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-5 relative z-10 border border-white/5">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-yellow-500/10 text-yellow-500 border border-yellow-500/30 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-2 shadow-[0_0_10px_rgba(234,179,8,0.2)]">
+                            <span class="relative flex h-2 w-2">
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                              <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+                            </span>
+                            قريباً
+                        </div>
+                        <span class="text-white font-bold text-sm sm:text-base tracking-wide">خيارات دفع مرنة وميسرة عبر</span>
+                    </div>
+                    
+                    <div class="flex items-center gap-3" dir="ltr">
+                        <div class="backdrop-blur-md bg-tamara/10 border border-tamara/50 text-tamara px-4 py-1.5 rounded-lg font-black text-xl tracking-tighter shadow-[0_0_20px_rgba(250,171,155,0.2)] hover:bg-tamara/20 hover:scale-105 transition-all">
+                            tamara
+                        </div>
+                        <div class="backdrop-blur-md bg-tabby/10 border border-tabby/50 text-tabby px-4 py-1.5 rounded-lg font-black text-xl tracking-tighter shadow-[0_0_20px_rgba(62,255,182,0.2)] hover:bg-tabby/20 hover:scale-105 transition-all">
+                            tabby
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 space-y-32 pb-28 z-10 relative">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 space-y-32 pb-28 z-10 relative mt-10">
 
-        <!-- القسم الأول: الرائد (لون أحمر) -->
-        <section aria-label="مهلة إلى الراتب">
-            <div class="flex flex-col items-center justify-center gap-3 mb-14">
+        <!-- القسم الأول: الرائد -->
+        <section id="alraed" class="scroll-mt-24">
+            <div class="flex flex-col items-center justify-center gap-3 mb-16">
                 <div class="flex items-center justify-center gap-5">
-                    <div class="h-[2px] w-16 bg-gradient-to-r from-transparent to-r-red opacity-50"></div>
-                    <h2 class="text-4xl md:text-5xl font-black text-white">مهلة إلى الراتب</h2>
-                    <div class="h-[2px] w-16 bg-gradient-to-l from-transparent to-r-red opacity-50"></div>
+                    <div class="h-[2px] w-12 md:w-24 bg-gradient-to-r from-transparent to-r-red opacity-50"></div>
+                    <h2 class="text-3xl md:text-5xl font-black text-white text-center">سلفة المحل</h2>
+                    <div class="h-[2px] w-12 md:w-24 bg-gradient-to-l from-transparent to-r-red opacity-50"></div>
                 </div>
-                <p class="text-gray-400 font-semibold text-lg">حضور شخصي للمكتب لإتمام الإجراءات</p>
+                <p class="text-gray-400 font-semibold text-lg bg-black/30 px-6 py-2 rounded-full border border-white/5">حضور شخصي للمكتب بالدمام لإتمام الإجراءات</p>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-7 mb-10">
-                <div class="glass-panel p-6 text-center group border-t-2 border-t-r-red/30">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 mt-8">
+                <div class="glass-panel p-6 text-center group border-t-2 border-t-r-red/30 flex flex-col">
                     <p class="text-gray-400 text-sm font-semibold mb-2">السعر</p>
-                    <div class="text-4xl md:text-5xl font-black text-white mb-5 transition-colors group-hover:text-r-red">500</div>
-                    <div class="bg-black/40 border border-white/5 rounded-xl py-3">
-                        <p class="text-sm text-gray-300">السداد مع الراتب: <span class="text-r-red font-bold text-xl">650</span></p>
+                    <div class="text-4xl md:text-5xl font-black text-white mb-6 transition-colors group-hover:text-r-red flex-grow">500</div>
+                    <div class="bg-black/60 border border-white/5 rounded-xl py-3 mt-auto">
+                        <p class="text-sm text-gray-300">السداد مع الراتب: <br><span class="text-r-red font-black text-2xl mt-1 block">650 <span class="text-sm text-gray-500 font-normal">ريال</span></span></p>
                     </div>
                 </div>
-                <div class="glass-panel p-6 text-center group border-t-2 border-t-r-red/30">
-                    <p class="text-gray-400 text-sm font-semibold mb-2">السعر</p>
-                    <div class="text-4xl md:text-5xl font-black text-white mb-5 transition-colors group-hover:text-r-red">1000</div>
-                    <div class="bg-black/40 border border-white/5 rounded-xl py-3">
-                        <p class="text-sm text-gray-300">السداد مع الراتب: <span class="text-r-red font-bold text-xl">1300</span></p>
+                
+                <div class="glass-panel highlight-card p-6 text-center group relative flex flex-col bg-r-red/5">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-r-red to-rose-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+                        🔥 الأكثر طلباً
+                    </div>
+                    <p class="text-gray-300 text-sm font-semibold mb-2 mt-2">السعر</p>
+                    <div class="text-5xl md:text-6xl font-black text-r-red mb-6 drop-shadow-md flex-grow">1000</div>
+                    <div class="bg-black/80 border border-r-red/30 rounded-xl py-4 mt-auto">
+                        <p class="text-sm text-gray-200">السداد مع الراتب: <br><span class="text-r-red font-black text-3xl mt-1 block">1300 <span class="text-sm text-gray-500 font-normal">ريال</span></span></p>
                     </div>
                 </div>
-                <div class="glass-panel p-6 text-center group border-t-2 border-t-r-red/30">
+
+                <div class="glass-panel p-6 text-center group border-t-2 border-t-r-red/30 flex flex-col">
                     <p class="text-gray-400 text-sm font-semibold mb-2">السعر</p>
-                    <div class="text-4xl md:text-5xl font-black text-white mb-5 transition-colors group-hover:text-r-red">1500</div>
-                    <div class="bg-black/40 border border-white/5 rounded-xl py-3">
-                        <p class="text-sm text-gray-300">السداد مع الراتب: <span class="text-r-red font-bold text-xl">1950</span></p>
+                    <div class="text-4xl md:text-5xl font-black text-white mb-6 transition-colors group-hover:text-r-red flex-grow">1500</div>
+                    <div class="bg-black/60 border border-white/5 rounded-xl py-3 mt-auto">
+                        <p class="text-sm text-gray-300">السداد مع الراتب: <br><span class="text-r-red font-black text-2xl mt-1 block">1950 <span class="text-sm text-gray-500 font-normal">ريال</span></span></p>
                     </div>
                 </div>
-                <div class="glass-panel p-6 text-center group border-t-2 border-t-r-red/30">
+                
+                <div class="glass-panel p-6 text-center group border-t-2 border-t-r-red/30 flex flex-col">
                     <p class="text-gray-400 text-sm font-semibold mb-2">السعر</p>
-                    <div class="text-4xl md:text-5xl font-black text-white mb-5 transition-colors group-hover:text-r-red">2000</div>
-                    <div class="bg-black/40 border border-white/5 rounded-xl py-3">
-                        <p class="text-sm text-gray-300">السداد مع الراتب: <span class="text-r-red font-bold text-xl">2600</span></p>
+                    <div class="text-4xl md:text-5xl font-black text-white mb-6 transition-colors group-hover:text-r-red flex-grow">2000</div>
+                    <div class="bg-black/60 border border-white/5 rounded-xl py-3 mt-auto">
+                        <p class="text-sm text-gray-300">السداد مع الراتب: <br><span class="text-r-red font-black text-2xl mt-1 block">2600 <span class="text-sm text-gray-500 font-normal">ريال</span></span></p>
                     </div>
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-7">
-                <div class="glass-panel p-8 md:col-span-2 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-1.5 h-full bg-r-red opacity-80"></div>
-                    <h3 class="text-2xl md:text-3xl font-bold mb-7 flex items-center gap-4 text-white">
-                        <svg class="w-7 h-7 text-r-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <div class="grid lg:grid-cols-3 gap-6">
+                <div class="glass-panel p-8 lg:col-span-2 relative overflow-hidden flex flex-col justify-center">
+                    <div class="absolute top-0 right-0 w-2 h-full bg-r-red opacity-80"></div>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-8 flex items-center gap-4 text-white">
+                        <div class="p-2 bg-r-red/20 rounded-lg">
+                            <svg class="w-6 h-6 text-r-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
                         شروط خدمة مهلة إلى الراتب
                     </h3>
-                    <ul class="grid sm:grid-cols-2 gap-y-5 gap-x-8 text-gray-300 font-medium text-lg">
-                        <li class="flex items-start gap-3"><span class="text-r-red font-bold mt-0.5">1-</span> عدم وجود إيقاف خدمات</li>
-                        <li class="flex items-start gap-3"><span class="text-r-red font-bold mt-0.5">2-</span> موظف حكومي أو قطاع خاص</li>
-                        <li class="flex items-start gap-3"><span class="text-r-red font-bold mt-0.5">3-</span> لا توجد مطالبات بناجز سارية أو منتهية</li>
-                        <li class="flex items-start gap-3"><span class="text-r-red font-bold mt-0.5">4-</span> يجب الحضور في المكتب بالدمام</li>
+                    <ul class="grid sm:grid-cols-2 gap-y-6 gap-x-8 text-gray-300 font-medium text-lg">
+                        <li class="flex items-start gap-3 bg-white/5 p-4 rounded-xl border border-white/5"><span class="text-r-red font-black text-xl leading-none">1</span> عدم وجود إيقاف خدمات</li>
+                        <li class="flex items-start gap-3 bg-white/5 p-4 rounded-xl border border-white/5"><span class="text-r-red font-black text-xl leading-none">2</span> موظف حكومي أو قطاع خاص</li>
+                        <li class="flex items-start gap-3 bg-white/5 p-4 rounded-xl border border-white/5"><span class="text-r-red font-black text-xl leading-none">3</span> لا توجد مطالبات بناجز سارية أو منتهية</li>
+                        <li class="flex items-start gap-3 bg-white/5 p-4 rounded-xl border border-white/5"><span class="text-r-red font-black text-xl leading-none">4</span> يجب الحضور في المكتب بالدمام</li>
                     </ul>
                 </div>
                 
-                <a href="https://wa.me/966508665558" target="_blank" class="glass-panel p-7 flex flex-col items-center justify-center text-center group relative overflow-hidden cursor-pointer hover:border-r-red/50">
-                    <div class="bg-black/50 text-r-red text-xs font-black px-5 py-1.5 rounded-full mb-5 border border-r-red/20 relative z-10">
-                        طريقة التقديم
+                <a href="https://wa.me/966508665558" target="_blank" class="glass-panel p-8 flex flex-col items-center justify-center text-center group relative overflow-hidden cursor-pointer border-2 border-transparent hover:border-r-red/50 transition-all bg-gradient-to-b from-transparent to-r-red/10">
+                    <div class="bg-black/60 text-r-red text-sm font-black px-6 py-2 rounded-full mb-6 border border-r-red/30 shadow-lg">
+                        تواصل المبيعات المباشرة
                     </div>
-
-                    <div class="w-16 h-16 bg-r-red rounded-full flex items-center justify-center mb-4 transition-transform group-hover:scale-105 relative z-10 shadow-[0_0_15px_rgba(0,0,0,0.8)]">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"></path></svg>
+                    <div class="w-20 h-20 bg-r-red rounded-full flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110 shadow-[0_0_25px_rgba(225,29,72,0.6)]">
+                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"></path></svg>
                     </div>
-                    
-                    <h4 class="text-2xl font-black text-white mb-1.5 relative z-10">اطلب سلفة المحل</h4>
-                    <p class="text-gray-400 text-sm mb-5 relative z-10">اضغط هنا للتواصل المباشر</p>
-                    
-                    <div class="bg-black border border-white/5 w-full py-3 rounded-xl flex flex-col items-center justify-center transition-all relative z-10">
-                        <span class="text-xs text-gray-500 mb-1">رقم التواصل</span>
-                        <span class="text-2xl font-black tracking-wider text-r-red" dir="ltr">050 866 5558</span>
+                    <h4 class="text-3xl font-black text-white mb-2">اطلب سلفة المحل</h4>
+                    <p class="text-gray-400 text-sm mb-6">اضغط هنا للتواصل المباشر والحجز</p>
+                    <div class="bg-black/80 border border-white/10 w-full py-4 rounded-xl flex flex-col items-center justify-center">
+                        <span class="text-xs text-gray-500 mb-1">رقم التواصل الموحد</span>
+                        <span class="text-2xl font-black tracking-widest text-r-red" dir="ltr">050 866 5558</span>
                     </div>
                 </a>
             </div>
         </section>
 
-        <!-- القسم الثاني: إمكان (لون سماوي) مدعوم بتدرج الخلفية في body -->
-        <section aria-label="تمويل إمكان">
-            <div class="flex flex-col items-center justify-center gap-3 mb-14">
+        <!-- القسم الثاني: إمكان (نقطة تغير اللون) -->
+        <section id="emkan" class="scroll-mt-32">
+            <div class="flex flex-col items-center justify-center gap-3 mb-16">
                 <div class="flex items-center justify-center gap-5">
-                    <div class="h-[2px] w-16 bg-gradient-to-r from-transparent to-r-sky opacity-50"></div>
-                    <h2 class="text-4xl md:text-5xl font-black text-white flex items-center gap-4">
-                        <svg class="w-10 h-10 text-r-sky" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.56c-.59-.52-1.37-.87-2.23-.87h-.67v-1.5c0-.83-.67-1.5-1.5-1.5h-3v-1.5c0-.83-.67-1.5-1.5-1.5H8v-2h2c.55 0 1-.45 1-1V6.26c1.17-.6 2.53-.94 3.96-.94 3.73 0 6.9 2.57 7.78 6.06l-2.84 2.84c-.39.39-1.02.39-1.41 0l-1.59-1.59z"/></svg>
-                        تمويل إمــكــان
+                    <div class="h-[2px] w-12 md:w-24 bg-gradient-to-r from-transparent to-r-sky opacity-50"></div>
+                    <h2 class="text-3xl md:text-5xl font-black text-white flex items-center gap-4">
+                        <div class="p-2 bg-r-sky/20 rounded-full hidden sm:block">
+                            <svg class="w-8 h-8 text-r-sky" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.56c-.59-.52-1.37-.87-2.23-.87h-.67v-1.5c0-.83-.67-1.5-1.5-1.5h-3v-1.5c0-.83-.67-1.5-1.5-1.5H8v-2h2c.55 0 1-.45 1-1V6.26c1.17-.6 2.53-.94 3.96-.94 3.73 0 6.9 2.57 7.78 6.06l-2.84 2.84c-.39.39-1.02.39-1.41 0l-1.59-1.59z"/></svg>
+                        </div>
+                        سلفة إمــكــان
                     </h2>
-                    <div class="h-[2px] w-16 bg-gradient-to-l from-transparent to-r-sky opacity-50"></div>
+                    <div class="h-[2px] w-12 md:w-24 bg-gradient-to-l from-transparent to-r-sky opacity-50"></div>
                 </div>
-                <div class="inline-block px-7 py-2.5 mt-3 rounded-full border border-r-sky/20 bg-black/40 text-r-sky font-extrabold text-lg tracking-wide">
-                    على 5 دفعات
+                <div class="inline-flex items-center gap-2 px-6 py-2 mt-2 rounded-full border border-r-sky/30 bg-r-sky/10 text-r-sky font-black text-lg shadow-[0_0_15px_rgba(14,165,233,0.2)]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    على 5 دفعات ميسرة
                 </div>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-7 mb-10">
-                <div class="glass-panel p-6 text-center group border-t-2 border-t-r-sky/30">
-                    <p class="text-gray-400 text-sm font-semibold mb-2">المبلغ</p>
-                    <div class="text-4xl md:text-5xl font-black text-white mb-5 transition-colors group-hover:text-r-sky">500</div>
-                    <div class="bg-black/40 border border-white/5 rounded-xl py-3">
-                        <p class="text-sm text-gray-300">رسوم إدارية: <span class="text-r-sky font-bold text-xl">150</span></p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="glass-panel p-6 text-center group border-t-2 border-t-r-sky/30 flex flex-col">
+                    <p class="text-gray-400 text-sm font-semibold mb-2">المبلغ المتاح</p>
+                    <div class="text-4xl md:text-5xl font-black text-white mb-6 transition-colors group-hover:text-r-sky flex-grow">500</div>
+                    <div class="bg-black/60 border border-white/5 rounded-xl py-3 mt-auto">
+                        <p class="text-sm text-gray-300">الرسوم الإدارية: <br><span class="text-r-sky font-black text-2xl mt-1 block">150 <span class="text-sm text-gray-500 font-normal">ريال</span></span></p>
                     </div>
                 </div>
-                <div class="glass-panel p-6 text-center group border-t-2 border-t-r-sky/30">
-                    <p class="text-gray-400 text-sm font-semibold mb-2">المبلغ</p>
-                    <div class="text-4xl md:text-5xl font-black text-white mb-5 transition-colors group-hover:text-r-sky">1000</div>
-                    <div class="bg-black/40 border border-white/5 rounded-xl py-3">
-                        <p class="text-sm text-gray-300">رسوم إدارية: <span class="text-r-sky font-bold text-xl">300</span></p>
+                
+                <div class="glass-panel p-6 text-center group border-t-2 border-t-r-sky/30 flex flex-col">
+                    <p class="text-gray-400 text-sm font-semibold mb-2">المبلغ المتاح</p>
+                    <div class="text-4xl md:text-5xl font-black text-white mb-6 transition-colors group-hover:text-r-sky flex-grow">1000</div>
+                    <div class="bg-black/60 border border-white/5 rounded-xl py-3 mt-auto">
+                        <p class="text-sm text-gray-300">الرسوم الإدارية: <br><span class="text-r-sky font-black text-2xl mt-1 block">300 <span class="text-sm text-gray-500 font-normal">ريال</span></span></p>
                     </div>
                 </div>
-                <div class="glass-panel p-6 text-center group border-t-2 border-t-r-sky/30">
-                    <p class="text-gray-400 text-sm font-semibold mb-2">المبلغ</p>
-                    <div class="text-4xl md:text-5xl font-black text-white mb-5 transition-colors group-hover:text-r-sky">1500</div>
-                    <div class="bg-black/40 border border-white/5 rounded-xl py-3">
-                        <p class="text-sm text-gray-300">رسوم إدارية: <span class="text-r-sky font-bold text-xl">450</span></p>
+
+                <div class="glass-panel highlight-card sky p-6 text-center group relative flex flex-col bg-r-sky/5">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-r-sky to-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+                        ⭐ الأفضل قيمة
+                    </div>
+                    <p class="text-gray-300 text-sm font-semibold mb-2 mt-2">المبلغ المتاح</p>
+                    <div class="text-5xl md:text-6xl font-black text-r-sky mb-6 drop-shadow-md flex-grow">1500</div>
+                    <div class="bg-black/80 border border-r-sky/30 rounded-xl py-4 mt-auto">
+                        <p class="text-sm text-gray-200">الرسوم الإدارية: <br><span class="text-r-sky font-black text-3xl mt-1 block">450 <span class="text-sm text-gray-500 font-normal">ريال</span></span></p>
                     </div>
                 </div>
-                <div class="glass-panel p-6 text-center group border-t-2 border-t-r-sky/30">
-                    <p class="text-gray-400 text-sm font-semibold mb-2">المبلغ</p>
-                    <div class="text-4xl md:text-5xl font-black text-white mb-5 transition-colors group-hover:text-r-sky">2000</div>
-                    <div class="bg-black/40 border border-white/5 rounded-xl py-3">
-                        <p class="text-sm text-gray-300">رسوم إدارية: <span class="text-r-sky font-bold text-xl">600</span></p>
+                
+                <div class="glass-panel p-6 text-center group border-t-2 border-t-r-sky/30 flex flex-col">
+                    <p class="text-gray-400 text-sm font-semibold mb-2">المبلغ المتاح</p>
+                    <div class="text-4xl md:text-5xl font-black text-white mb-6 transition-colors group-hover:text-r-sky flex-grow">2000</div>
+                    <div class="bg-black/60 border border-white/5 rounded-xl py-3 mt-auto">
+                        <p class="text-sm text-gray-300">الرسوم الإدارية: <br><span class="text-r-sky font-black text-2xl mt-1 block">600 <span class="text-sm text-gray-500 font-normal">ريال</span></span></p>
                     </div>
                 </div>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-7">
-                <div class="glass-panel p-8 md:col-span-2 flex flex-col justify-center items-center text-center relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-1.5 h-full bg-r-sky opacity-80"></div>
-                    <h3 class="text-3xl md:text-4xl font-black text-white mb-6">مميزات الخدمة</h3>
-                    <div class="flex flex-wrap justify-center gap-4 mt-4">
-                        <span class="bg-black border border-white/5 text-gray-200 px-6 py-3.5 rounded-xl font-bold text-lg">بدون شروط معقدة</span>
-                        <span class="bg-black border border-white/5 text-gray-200 px-6 py-3.5 rounded-xl font-bold text-lg">الدفعة الأولى علينا</span>
-                        <span class="bg-black border border-white/5 text-gray-200 px-6 py-3.5 rounded-xl font-bold text-lg">تخليص عن بُعد</span>
+            <div class="grid lg:grid-cols-3 gap-6">
+                <div class="glass-panel p-8 lg:col-span-2 flex flex-col justify-center items-center text-center relative overflow-hidden bg-gradient-to-tr from-transparent via-r-sky/5 to-transparent">
+                    <div class="absolute top-0 right-0 w-2 h-full bg-r-sky opacity-80"></div>
+                    <h3 class="text-3xl md:text-4xl font-black text-white mb-8">لماذا تختار خدمة إمكان؟</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
+                        <div class="bg-black/50 border border-white/10 p-6 rounded-2xl flex flex-col items-center gap-3 hover:bg-white/5 transition-colors">
+                            <div class="w-12 h-12 bg-r-sky/20 rounded-full flex items-center justify-center text-r-sky mb-2">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <span class="text-white font-bold text-lg">بدون شروط معقدة</span>
+                            <span class="text-sm text-gray-400">إجراءات سلسة وسريعة للجميع</span>
+                        </div>
+                        <div class="bg-black/50 border border-white/10 p-6 rounded-2xl flex flex-col items-center gap-3 hover:bg-white/5 transition-colors">
+                            <div class="w-12 h-12 bg-r-sky/20 rounded-full flex items-center justify-center text-r-sky mb-2">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <span class="text-white font-bold text-lg">الدفعة الأولى علينا</span>
+                            <span class="text-sm text-gray-400">نبدأ معك لنسهل عليك السداد</span>
+                        </div>
+                        <div class="bg-black/50 border border-white/10 p-6 rounded-2xl flex flex-col items-center gap-3 hover:bg-white/5 transition-colors">
+                            <div class="w-12 h-12 bg-r-sky/20 rounded-full flex items-center justify-center text-r-sky mb-2">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <span class="text-white font-bold text-lg">تخليص عن بُعد</span>
+                            <span class="text-sm text-gray-400">من أي مكان في المملكة عبر الجوال</span>
+                        </div>
                     </div>
-                    <p class="text-gray-400 mt-8 font-semibold text-lg md:text-xl">مرحباً بالجميع لإنجاز فوري وإلكتروني بالكامل</p>
                 </div>
 
-                <a href="https://wa.me/966505293320" target="_blank" class="glass-panel p-7 flex flex-col items-center justify-center text-center group relative overflow-hidden cursor-pointer hover:border-r-sky/50">
-                    <div class="bg-black/50 text-r-sky text-xs font-black px-5 py-1.5 rounded-full mb-5 border border-r-sky/20 relative z-10">
-                        طريقة التقديم
+                <a href="https://wa.me/966505293320" target="_blank" class="glass-panel p-8 flex flex-col items-center justify-center text-center group relative overflow-hidden cursor-pointer border-2 border-transparent hover:border-r-sky/50 transition-all bg-gradient-to-b from-transparent to-r-sky/10">
+                    <div class="bg-black/60 text-r-sky text-sm font-black px-6 py-2 rounded-full mb-6 border border-r-sky/30 shadow-lg">
+                        خدمة العملاء (عن بعد)
                     </div>
-
-                    <div class="w-16 h-16 bg-r-sky rounded-full flex items-center justify-center mb-4 transition-transform group-hover:scale-105 relative z-10 shadow-[0_0_15px_rgba(0,0,0,0.8)]">
-                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"></path></svg>
+                    <div class="w-20 h-20 bg-r-sky rounded-full flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110 shadow-[0_0_25px_rgba(14,165,233,0.6)]">
+                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"></path></svg>
                     </div>
-                    
-                    <h4 class="text-2xl font-black text-white mb-1.5 relative z-10">اطلب سلفة عن بُعد</h4>
-                    <p class="text-gray-400 text-sm mb-5 relative z-10">اضغط هنا لتقديم طلبك إلكترونياً</p>
-                    
-                    <div class="bg-black border border-white/5 w-full py-3 rounded-xl flex flex-col items-center justify-center transition-all relative z-10">
-                        <span class="text-xs text-gray-500 mb-1">رقم التواصل</span>
-                        <span class="text-2xl font-black tracking-wider text-r-sky" dir="ltr">050 529 3320</span>
+                    <h4 class="text-3xl font-black text-white mb-2">اطلب سلفة عن بُعد</h4>
+                    <p class="text-gray-400 text-sm mb-6">اضغط هنا لتقديم طلبك إلكترونياً فوراً</p>
+                    <div class="bg-black/80 border border-white/10 w-full py-4 rounded-xl flex flex-col items-center justify-center">
+                        <span class="text-xs text-gray-500 mb-1">رقم التواصل المباشر</span>
+                        <span class="text-2xl font-black tracking-widest text-r-sky" dir="ltr">050 529 3320</span>
                     </div>
                 </a>
             </div>
         </section>
 
         <!-- قسم التقييمات -->
-        <section>
-            <div class="flex items-center justify-center gap-4 mb-14">
-                <h2 class="text-3xl md:text-4xl font-bold text-white">تقييمات عملائنا (Google)</h2>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" class="w-8 h-8 drop-shadow-md bg-white rounded-full p-1">
+        <section id="reviews" class="scroll-mt-24 pt-10">
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-white">ماذا يقول عملاؤنا عنا؟</h2>
+                <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full border border-white/20">
+                    <span class="font-bold text-lg">4.9/5</span>
+                    <div class="text-yellow-400 text-sm">★★★★★</div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" class="w-6 h-6 bg-white rounded-full p-1 ml-2">
+                </div>
             </div>
             
             <div class="marquee-container" dir="ltr">
                 <div class="marquee-content">
-                    <div dir="rtl" class="glass-panel p-6 w-[340px] flex-shrink-0 flex flex-col">
-                        <div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center font-bold text-white shadow-inner">ع</div><div><h4 class="font-bold text-gray-200">عبدالإله القحطاني</h4><div class="text-yellow-500 text-xs tracking-widest mt-1">★★★★★ <span class="text-gray-500 ml-1 font-normal">قبل يومين</span></div></div></div>
-                        <p class="text-gray-400 text-sm leading-relaxed flex-grow">الف شكر لكم تعامل ممتاز وسهل وسرعة في الانجاز وخدمات مميزه بسعر ميسر، انصح بتعامل معهم للامانه مكتب يعتمد عليه.</p>
+                    <div dir="rtl" class="glass-panel p-6 w-[350px] flex-shrink-0 flex flex-col">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-blue-900 flex items-center justify-center font-bold text-white text-xl shadow-inner border border-white/10">ع</div>
+                            <div>
+                                <h4 class="font-bold text-gray-100 text-lg">عبدالإله القحطاني</h4>
+                                <div class="text-yellow-400 text-xs tracking-widest mt-1">★★★★★ <span class="text-gray-500 ml-1 font-normal font-sans">قبل يومين</span></div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed flex-grow">الف شكر لكم تعامل ممتاز وسهل وسرعة في الانجاز وخدمات مميزه بسعر ميسر، انصح بتعامل معهم للامانه مكتب يعتمد عليه.</p>
                     </div>
-                    <div dir="rtl" class="glass-panel p-6 w-[340px] flex-shrink-0 flex flex-col">
-                        <div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold text-white shadow-inner">R</div><div><h4 class="font-bold text-gray-200">Rakan</h4><div class="text-yellow-500 text-xs tracking-widest mt-1">★★★★★ <span class="text-gray-500 ml-1 font-normal">قبل 6 أشهر</span></div></div></div>
-                        <p class="text-gray-400 text-sm leading-relaxed flex-grow">حاب اشكر مكتب الرائد على حسن التعامل والاحترام والتقدير وعلى سرعة إنجاز العمل، يعطيهم الف عافية.</p>
+                    
+                    <div dir="rtl" class="glass-panel p-6 w-[350px] flex-shrink-0 flex flex-col">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-white text-xl shadow-inner border border-white/10">R</div>
+                            <div>
+                                <h4 class="font-bold text-gray-100 text-lg">Rakan</h4>
+                                <div class="text-yellow-400 text-xs tracking-widest mt-1">★★★★★ <span class="text-gray-500 ml-1 font-normal font-sans">قبل أسبوع</span></div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed flex-grow">حاب اشكر مكتب الرائد على حسن التعامل والاحترام والتقدير وعلى سرعة إنجاز العمل، يعطيهم الف عافية.</p>
                     </div>
-                    <div dir="rtl" class="glass-panel p-6 w-[340px] flex-shrink-0 flex flex-col">
-                        <div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center font-bold text-white shadow-inner">س</div><div><h4 class="font-bold text-gray-200">سويد الغامدي</h4><div class="text-yellow-500 text-xs tracking-widest mt-1">★★★★★ <span class="text-gray-500 ml-1 font-normal">قبل 6 أشهر</span></div></div></div>
-                        <p class="text-gray-400 text-sm leading-relaxed flex-grow">ماشاء الله تبارك الله 🥰🥰 شغل مرتب وإنجاز سريع لجميع المعاملات والأهم من هذا كله اخلاق الموظفين.</p>
+                    
+                    <div dir="rtl" class="glass-panel p-6 w-[350px] flex-shrink-0 flex flex-col">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center font-bold text-white text-xl shadow-inner border border-white/10">س</div>
+                            <div>
+                                <h4 class="font-bold text-gray-100 text-lg">سويد الغامدي</h4>
+                                <div class="text-yellow-400 text-xs tracking-widest mt-1">★★★★★ <span class="text-gray-500 ml-1 font-normal font-sans">قبل شهر</span></div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed flex-grow">ماشاء الله تبارك الله 🥰🥰 شغل مرتب وإنجاز سريع لجميع المعاملات والأهم من هذا كله اخلاق الموظفين.</p>
                     </div>
-                    <!-- تكرار لضمان استمرارية الشريط -->
-                    <div dir="rtl" class="glass-panel p-6 w-[340px] flex-shrink-0 flex flex-col">
-                        <div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center font-bold text-white shadow-inner">ع</div><div><h4 class="font-bold text-gray-200">عبدالإله القحطاني</h4><div class="text-yellow-500 text-xs tracking-widest mt-1">★★★★★ <span class="text-gray-500 ml-1 font-normal">قبل يومين</span></div></div></div>
-                        <p class="text-gray-400 text-sm leading-relaxed flex-grow">الف شكر لكم تعامل ممتاز وسهل وسرعة في الانجاز وخدمات مميزه بسعر ميسر، انصح بتعامل معهم للامانه مكتب يعتمد عليه.</p>
+
+                    <div dir="rtl" class="glass-panel p-6 w-[350px] flex-shrink-0 flex flex-col">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-700 to-blue-900 flex items-center justify-center font-bold text-white text-xl shadow-inner border border-white/10">ع</div>
+                            <div>
+                                <h4 class="font-bold text-gray-100 text-lg">عبدالإله القحطاني</h4>
+                                <div class="text-yellow-400 text-xs tracking-widest mt-1">★★★★★ <span class="text-gray-500 ml-1 font-normal font-sans">قبل يومين</span></div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed flex-grow">الف شكر لكم تعامل ممتاز وسهل وسرعة في الانجاز وخدمات مميزه بسعر ميسر، انصح بتعامل معهم للامانه مكتب يعتمد عليه.</p>
                     </div>
-                    <div dir="rtl" class="glass-panel p-6 w-[340px] flex-shrink-0 flex flex-col">
-                        <div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold text-white shadow-inner">R</div><div><h4 class="font-bold text-gray-200">Rakan</h4><div class="text-yellow-500 text-xs tracking-widest mt-1">★★★★★ <span class="text-gray-500 ml-1 font-normal">قبل 6 أشهر</span></div></div></div>
-                        <p class="text-gray-400 text-sm leading-relaxed flex-grow">حاب اشكر مكتب الرائد على حسن التعامل والاحترام والتقدير وعلى سرعة إنجاز العمل، يعطيهم الف عافية.</p>
+                    
+                    <div dir="rtl" class="glass-panel p-6 w-[350px] flex-shrink-0 flex flex-col">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-white text-xl shadow-inner border border-white/10">R</div>
+                            <div>
+                                <h4 class="font-bold text-gray-100 text-lg">Rakan</h4>
+                                <div class="text-yellow-400 text-xs tracking-widest mt-1">★★★★★ <span class="text-gray-500 ml-1 font-normal font-sans">قبل أسبوع</span></div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed flex-grow">حاب اشكر مكتب الرائد على حسن التعامل والاحترام والتقدير وعلى سرعة إنجاز العمل، يعطيهم الف عافية.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- قسم الموقع (الخريطة) -->
-        <section aria-label="موقعنا">
+        <section id="location" class="scroll-mt-24 pt-10" aria-label="موقعنا">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-10 text-white">تفضل بزيارتنا في المكتب</h2>
-            <div class="glass-panel p-3 overflow-hidden rounded-3xl relative border-white/10">
-                
+            <div class="glass-panel p-2 md:p-4 overflow-hidden rounded-3xl relative border-white/10 bg-black/40">
                 <iframe 
                     src="https://maps.google.com/maps?q=26.4249198,50.0431077&z=16&output=embed" 
-                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" class="premium-map rounded-2xl w-full bg-black">
+                    width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" class="premium-map rounded-2xl w-full bg-[#1a1a1a]">
                 </iframe>
-                
                 <div class="absolute bottom-8 left-0 right-0 flex justify-center pointer-events-none px-4">
-                    <a href="https://www.google.com/maps/search/?api=1&query=26.4249198,50.0431077&query_place_id=ChIJ1bh7GT79ST4RRatNHdeHFtc" target="_blank" class="pointer-events-auto flex items-center justify-center gap-3 bg-white text-black px-6 py-4 md:px-8 rounded-full font-bold shadow-2xl hover:scale-105 hover:bg-gray-100 transition-all text-sm md:text-base w-full md:w-auto text-center">
-                        <svg class="w-6 h-6 text-r-red" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>
+                    <a href="https://www.google.com/maps/search/?api=1&query=26.4249198,50.0431077&query_place_id=ChIJ1bh7GT79ST4RRatNHdeHFtc" target="_blank" class="pointer-events-auto flex items-center justify-center gap-3 bg-white text-black px-6 py-4 md:px-10 rounded-full font-bold shadow-[0_10_30px_rgba(0,0,0,0.8)] hover:-translate-y-1 hover:bg-gray-100 transition-all text-sm md:text-lg w-full md:w-auto text-center border-4 border-black/10">
+                        <svg class="w-7 h-7 text-r-red" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>
                         الدمام - حي أحد - مكتب الرائد (اضغط للوصول)
                     </a>
                 </div>
@@ -296,18 +438,74 @@
 
     </main>
 
-    <footer class="border-t border-white/5 bg-black/80 py-10 text-center relative z-10 mt-10">
+    <footer class="border-t border-white/10 bg-black/90 py-12 text-center relative z-10">
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p class="text-gray-500 font-semibold text-sm tracking-wide">
-                جميع الحقوق محفوظة © 2026 مكتب الرائد للخدمات المالية.
-            </p>
-            <div class="flex gap-4 text-gray-400" dir="ltr">
-                <span class="text-sm font-mono">050 866 5558</span>
+            <div class="flex items-center gap-3">
+                <p class="text-gray-400 font-semibold text-sm tracking-wide">
+                    جميع الحقوق محفوظة © 2026 مكتب الرائد.
+                </p>
+            </div>
+            
+            <div class="flex gap-6 text-gray-400 bg-white/5 px-6 py-3 rounded-full border border-white/5" dir="ltr">
+                <a href="tel:0508665558" class="text-sm font-mono hover:text-white transition-colors">050 866 5558</a>
                 <span class="text-gray-700 text-sm">|</span>
-                <span class="text-sm font-mono">050 529 3320</span>
+                <a href="tel:0505293320" class="text-sm font-mono hover:text-white transition-colors">050 529 3320</a>
             </div>
         </div>
     </footer>
 
+    <a href="https://wa.me/966508665558" target="_blank" aria-label="تواصل معنا عبر واتساب" class="fixed bottom-6 left-6 md:bottom-8 md:left-8 z-50 bg-r-green text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform flex items-center justify-center whatsapp-fab">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.129.332.202.043.073.043.423-.101.827z"></path></svg>
+    </a>
+
+    <!-- سكريبت تبديل الخلفية بذكاء عند النزول لقسم إمكان -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const emkanSection = document.getElementById('emkan');
+            const bgAlraed = document.getElementById('bg-alraed');
+            const bgEmkan = document.getElementById('bg-emkan');
+            const orbTop = document.getElementById('orb-top');
+            const orbBottom = document.getElementById('orb-bottom');
+            const heroTitleAccent = document.getElementById('hero-title-accent');
+
+            // مراقبة النزول لقسم إمكان
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // إظهار السمة الزرقاء (إمكان)
+                        bgEmkan.classList.remove('opacity-0');
+                        bgEmkan.classList.add('opacity-100');
+                        bgAlraed.classList.remove('opacity-100');
+                        bgAlraed.classList.add('opacity-0');
+                        
+                        orbTop.style.background = '#00223b';
+                        orbBottom.style.background = '#001a2e';
+                        
+                        // تغيير لون الكلمة الرئيسية
+                        heroTitleAccent.classList.remove('from-r-red', 'to-pink-500');
+                        heroTitleAccent.classList.add('from-r-sky', 'to-blue-500');
+                    } else {
+                        // إظهار السمة الحمراء (الرائد)
+                        bgEmkan.classList.add('opacity-0');
+                        bgEmkan.classList.remove('opacity-100');
+                        bgAlraed.classList.add('opacity-100');
+                        bgAlraed.classList.remove('opacity-0');
+                        
+                        orbTop.style.background = '#3a000a';
+                        orbBottom.style.background = '#2a0000';
+                        
+                        // استرجاع لون الكلمة الرئيسية
+                        heroTitleAccent.classList.add('from-r-red', 'to-pink-500');
+                        heroTitleAccent.classList.remove('from-r-sky', 'to-blue-500');
+                    }
+                });
+            }, { 
+                threshold: 0.15, // يبدأ التغيير بمجرد ظهور 15% من قسم إمكان
+                rootMargin: "0px 0px -20% 0px" // إزاحة للتحكم الدقيق بمتى يحدث التغيير
+            });
+
+            observer.observe(emkanSection);
+        });
+    </script>
 </body>
 </html>
